@@ -1,0 +1,110 @@
+plugins {
+    id 'java-library'
+    id 'idea'
+    id 'net.neoforged.gradle.userdev' version '7.0.100'
+}
+
+group = "${modGroup}"
+version = "${modVersion}-${modVersionType}"
+base.archivesName = "Warcanum"
+
+java {
+    withSourcesJar ()
+
+    toolchain.languageVersion = JavaLanguageVersion.of(17)
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+sourceSets {
+    api {
+        compileClasspath += configurations["compileClasspath"]
+    }
+    lib {
+        compileClasspath += configurations["compileClasspath"]
+    }
+    main {
+        compileClasspath += sourceSets.lib.output
+        compileClasspath += sourceSets.api.output
+        runtimeClasspath += sourceSets.api.output
+
+        resources.srcDirs += 'src/generated/resources'
+    }
+}
+
+subsystems {
+    parchment {
+        minecraftVersion = "${parchmentMcVersion}"
+        mappingsVersion = "${parchmentVersion}"
+    }
+}
+
+repositories {
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+}
+
+dependencies {
+    implementation "net.neoforged:neoforge:${neoVersion}"
+    implementation "curse.maven:project-949923:5235276"
+}
+
+minecraft.accessTransformers {
+    file('src/main/resources/META-INF/accesstransformer.cfg')
+}
+
+runs {
+    create("client") {
+        systemProperty("forge.logging.console.level", 'debug')
+        workingDirectory(file('run/client'))
+
+        modSources = [sourceSets.main, sourceSets.api, sourceSets.lib]
+    }
+    create("data") {
+        workingDirectory(file('run/data'))
+        programArguments.addAll('--mod', modId, "--all", '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources').getAbsolutePath())
+    }
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+        mod_id: modId, mod_name: modName, mod_description: modDescription, mod_authors: modAuthors, mod_credits: modCredits, mod_version: modVersion,
+            neo_version: neoVersion, neo_loader_range: neoLoaderRange, neo_version_range: neoVersionRange,
+            guidebookapi_version: guidebookapiVersion
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+idea {
+    module {
+        for ( String excludeDirName in ["run", "out", "logs", "runs"] ) {
+            File excludeDir = new File(projectDir, excludeDirName)
+            excludeDirs.add(excludeDir)
+        }
+        downloadSources = true
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 17
+    it.options.encoding = 'UTF-8'
+}
+
+tasks.named('jar', Jar).configure {
+    from sourceSets.main.output.classesDirs
+    from sourceSets.api.output.classesDirs
+    from sourceSets.lib.output.classesDirs
+    from sourceSets.main.output.resourcesDir
+    from sourceSets.api.output.resourcesDir
+    from sourceSets.lib.output.resourcesDir
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
