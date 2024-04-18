@@ -1,7 +1,6 @@
 package de.wonejo.warcanum.core;
 
 import net.neoforged.bus.api.IEventBus;
-
 public class WarcanumRegistryHandler {
 
     private final IEventBus bus;
@@ -11,9 +10,13 @@ public class WarcanumRegistryHandler {
     }
 
     public void setupRegistries () {
-        ModAdvancements.registerAdvancement(this.bus);
+        ModAdvancementsTrigger.registerAdvancementTriggers(this.bus);
         ModBlocks.registerBlocks(this.bus);
+        ModCreativeTabs.registerCreativeTabs(this.bus);
+        ModEntities.registerEntities(this.bus);
         ModItems.registerItems(this.bus);
+        ModSounds.registerSounds(this.bus);
+        ModTiles.registerTiles(this.bus);
     }
 
 }

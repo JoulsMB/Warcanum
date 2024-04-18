@@ -6,10 +6,12 @@ import de.wonejo.gapi.api.book.IBookBuilder;
 import de.wonejo.gapi.api.book.components.IBookCategory;
 import de.wonejo.gapi.api.impl.book.BookBuilder;
 import de.wonejo.gapi.api.impl.book.BookInformationBuilder;
-import de.wonejo.warcanum.lib.util.Constants;
+import de.wonejo.gapi.api.util.GuideTexture;
+import de.wonejo.warcanum.util.Constants;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
+import java.awt.*;
 import java.util.List;
 
 @GuidebookAPI
@@ -26,7 +28,9 @@ public final class WarcanumGuidebook implements IGuidebook {
                         .build()
                 ).itemName(Component.translatable("guide.warcanum.item.name"))
                 .header(Component.translatable("guide.warcanum.header"))
+                .model(new ResourceLocation(Constants.MOD_ID, "warcanum_guide"))
                 .author(Component.translatable("guide.warcanum.author"))
+                .pagesColor(new Color(92, 54, 116))
                 .contentProvider(this::contentBuilder);
     }
 

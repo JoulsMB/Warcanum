@@ -5,5 +5,9 @@
   "guide.warcanum.information.credits": "WonejoMB",
   "guide.warcanum.item.name": "Warcanum Guide",
   "guide.warcanum.header": "Warcanum",
-  "guide.warcanum.author": "WonejoMB/JoulsMB"
+  "guide.warcanum.author": "WonejoMB/JoulsMB",
+  "__comment": "Creative Tab",
+  "itemGroup.warcanum.items": "Warcanum Items",
+  "itemGroup.warcanum.blocks": "Warcanum Blocks",
+  "itemGroup.warcanum.entities": "Warcanum Entities"
 }

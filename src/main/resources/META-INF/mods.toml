@@ -1,6 +1,7 @@
 modLoader="javafml"
 loaderVersion="${neo_loader_range}"
 license="MIT"
+issueTrackerURL="https://github.com/JoulsMB/Warcanum/issues"
 
 [[mods]]
     modId="${mod_id}"
@@ -9,13 +10,13 @@ license="MIT"
     authors="${mod_authors}"
     credits="${mod_credits}"
     description="${mod_description}"
-        [[dependencies."${mod_id}"]]
+        [[dependencies.${mod_id}]]
             modId="neoforge"
             type="required"
             versionRange="${neo_version_range}"
             ordering="NONE"
             side="BOTH"
-        [[dependencies."${mod_id}"]]
+        [[dependencies.${mod_id}]]
             modId="gapi"
             type="optional"
             versionRange="[${guidebookapi_version},)"

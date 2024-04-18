@@ -1,16 +1,19 @@
 package de.wonejo.warcanum.core;
 
-import de.wonejo.warcanum.lib.util.Constants;
+import de.wonejo.warcanum.util.Constants;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class ModBlocks {
     private static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Constants.MOD_ID);
@@ -33,5 +36,9 @@ public class ModBlocks {
 
     private static <T extends Block> @NotNull DeferredBlock<T> createBlock (String pId, Supplier<T> pBlock ) {
         return createBlock(pId, pBlock, new Item.Properties());
+    }
+
+    public static @NotNull Set<Block> getAllBlocks () {
+        return BLOCKS.getEntries().stream().map(DeferredHolder::get).collect(Collectors.toUnmodifiableSet());
     }
 }

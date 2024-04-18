@@ -1,9 +1,11 @@
 package de.wonejo.warcanum;
 
+import de.wonejo.warcanum.client.WarcanumClientMod;
 import de.wonejo.warcanum.core.WarcanumRegistryHandler;
-import de.wonejo.warcanum.lib.util.Constants;
+import de.wonejo.warcanum.util.Constants;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,12 +14,21 @@ public class WarcanumMod {
 
     public static final Logger LOGGER = LogManager.getLogger();
 
-    private final WarcanumRegistryHandler registryHandler;
+    public static WarcanumClientMod CLIENT;
+
 
     public WarcanumMod (IEventBus pBus) {
 
-        this.registryHandler = new WarcanumRegistryHandler(pBus);
-        this.registryHandler.setupRegistries();
+        pBus.addListener(this::onCommonSetup);
+
+        CLIENT = new WarcanumClientMod(pBus);
+        WarcanumRegistryHandler registryHandler = new WarcanumRegistryHandler(pBus);
+        registryHandler.setupRegistries();
+        CLIENT.getClientRegistry().setupRegistries();
+    }
+
+    private void onCommonSetup (final FMLCommonSetupEvent pEvent) {
+
     }
 
 }

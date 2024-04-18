@@ -1,4 +1,4 @@
-package de.wonejo.warcanum.lib.util;
+package de.wonejo.warcanum.util;
 
 public final class Constants {
 
