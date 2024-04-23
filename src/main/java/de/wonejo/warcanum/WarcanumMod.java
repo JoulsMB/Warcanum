@@ -1,6 +1,7 @@
 package de.wonejo.warcanum;
 
 import de.wonejo.warcanum.client.WarcanumClientMod;
+import de.wonejo.warcanum.core.ModPotions;
 import de.wonejo.warcanum.core.WarcanumRegistryHandler;
 import de.wonejo.warcanum.util.Constants;
 import net.neoforged.bus.api.IEventBus;
@@ -28,7 +29,7 @@ public class WarcanumMod {
     }
 
     private void onCommonSetup (final FMLCommonSetupEvent pEvent) {
-
+        ModPotions.registerPotionMixes();
     }
 
 }

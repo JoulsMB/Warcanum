@@ -11,12 +11,15 @@ public class WarcanumRegistryHandler {
 
     public void setupRegistries () {
         ModAdvancementsTrigger.registerAdvancementTriggers(this.bus);
-        ModBlocks.registerBlocks(this.bus);
-        ModCreativeTabs.registerCreativeTabs(this.bus);
         ModEntities.registerEntities(this.bus);
+        ModBlocks.registerBlocks(this.bus);
         ModItems.registerItems(this.bus);
+        ModEffects.registerEffects(this.bus);
+        ModPotions.registerPotions(this.bus);
         ModSounds.registerSounds(this.bus);
         ModTiles.registerTiles(this.bus);
+
+        ModCreativeTabs.registerCreativeTabs(this.bus);
     }
 
 }

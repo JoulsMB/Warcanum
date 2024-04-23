@@ -16,9 +16,9 @@ public class ModCreativeTabs {
 
     private static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Constants.MOD_ID);
 
-//    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ITEMS = TABS.register(Keys.ITEMS.location().getPath(), () -> WarcanumTabs.buildItems(ModItems.getTabItems().stream().map(DeferredHolder::get).collect(Collectors.toSet())).build());
-//    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BLOCKS = TABS.register(Keys.BLOCKS.location().getPath(), () -> WarcanumTabs.buildBlocks(ModItems.getTabItems().stream().map(DeferredHolder::get).collect(Collectors.toSet())).build());
-//    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ENTITIES = TABS.register(Keys.ENTITIES.location().getPath(), () -> WarcanumTabs.buildEntities(ModItems.getTabItems().stream().map(DeferredHolder::get).collect(Collectors.toSet())).build());
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ITEMS = TABS.register(Keys.ITEMS.location().getPath(), () -> WarcanumTabs.buildItems(ModItems.getTabItems().stream().map(DeferredHolder::get).collect(Collectors.toSet())).build());
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BLOCKS = TABS.register(Keys.BLOCKS.location().getPath(), () -> WarcanumTabs.buildBlocks(ModItems.getTabItems().stream().map(DeferredHolder::get).collect(Collectors.toSet())).build());
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ENTITIES = TABS.register(Keys.ENTITIES.location().getPath(), () -> WarcanumTabs.buildEntities(ModItems.getTabItems().stream().map(DeferredHolder::get).collect(Collectors.toSet())).build());
 
     static void registerCreativeTabs (IEventBus pBus) {
         TABS.register(pBus);

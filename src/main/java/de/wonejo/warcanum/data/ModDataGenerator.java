@@ -1,6 +1,5 @@
 package de.wonejo.warcanum.data;
 
-import de.wonejo.warcanum.core.ModLootTables;
 import de.wonejo.warcanum.data.client.ModBlockStateGenerator;
 import de.wonejo.warcanum.data.client.ModItemGenerator;
 import de.wonejo.warcanum.data.server.ModLootDataGenerator;
@@ -26,11 +25,12 @@ public class ModDataGenerator {
 
         generator.addProvider(pEvent.includeClient(), new ModItemGenerator(packOutput, existingFileHelper));
         generator.addProvider(pEvent.includeClient(), new ModBlockStateGenerator(packOutput, existingFileHelper));
+        generator.addProvider(pEvent.includeClient(), new ModSoundsGenerator(packOutput, existingFileHelper));
 
         generator.addProvider(pEvent.includeServer(), new ModRecipeGenerator(packOutput));
-        generator.addProvider(pEvent.includeServer(), new ModSoundsGenerator(packOutput, existingFileHelper));
+        generator.addProvider(pEvent.includeServer(), ModLootDataGenerator.generateProviders(packOutput));
 
-        ModLootDataGenerator.generateProviders(packOutput);
         ModTagGenerator.generateTagsProvider(pEvent, generator, packOutput, existingFileHelper);
     }
+
 }

@@ -29,4 +29,5 @@ public class GhostAnimations {
                     new Keyframe(0.25F, KeyframeAnimations.posVec(0.0F, 1.25F, 8.0F), AnimationChannel.Interpolations.LINEAR)))
         .build();
 
+
 }

@@ -1,14 +1,20 @@
 package de.wonejo.warcanum.client.render;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import de.wonejo.warcanum.client.core.ModEntityLayers;
 import de.wonejo.warcanum.client.model.GhostModel;
 import de.wonejo.warcanum.client.render.layer.GhostEyesLayer;
+import de.wonejo.warcanum.core.ModEffects;
 import de.wonejo.warcanum.entity.GhostEntity;
 import de.wonejo.warcanum.util.Constants;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EndermanRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class GhostRenderer extends MobRenderer<GhostEntity, GhostModel> {

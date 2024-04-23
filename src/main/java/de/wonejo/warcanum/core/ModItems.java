@@ -17,11 +17,12 @@ public class ModItems {
     private static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Constants.MOD_ID);
     private static final Set<DeferredHolder<Item, ? extends Item>> TAB_ITEMS = Sets.newHashSet();
 
-    public static final DeferredHolder<Item, Item> GHOSTLY_PLASMA = create("ghostly_plasma", () -> new Item(new Item.Properties()));
-    public static final DeferredHolder<Item, ArmorItem> GHOSTLY_ARMOR_HELMET = create("ghostly_armor_helmet", () -> new ArmorItem(WarcanumArmorMaterials.GHOSTLY_PLASMA, ArmorItem.Type.HELMET, new Item.Properties()));
-    public static final DeferredHolder<Item, ArmorItem> GHOSTLY_ARMOR_CHESTPLATE = create("ghostly_armor_chestplate", () -> new ArmorItem(WarcanumArmorMaterials.GHOSTLY_PLASMA, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
-    public static final DeferredHolder<Item, ArmorItem> GHOSTLY_ARMOR_LEGGINGS = create("ghostly_armor_leggings", () -> new ArmorItem(WarcanumArmorMaterials.GHOSTLY_PLASMA, ArmorItem.Type.LEGGINGS, new Item.Properties()));
-    public static final DeferredHolder<Item, ArmorItem> GHOSTLY_ARMOR_BOOTS = create("ghostly_armor_boots", () -> new ArmorItem(WarcanumArmorMaterials.GHOSTLY_PLASMA, ArmorItem.Type.BOOTS, new Item.Properties()));
+    public static final DeferredHolder<Item, Item> GHOST_PLASMA = create("ghost_plasma", () -> new Item(new Item.Properties()));
+
+
+    public static final DeferredHolder<Item, Item> IRON_KEY = create("iron_key", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> GOLDEN_KEY = create("golden_key", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> SPECTRAL_KEY = create("spectral_key", () -> new Item(new Item.Properties()));
 
 
     static void registerItems (IEventBus pBus) {
