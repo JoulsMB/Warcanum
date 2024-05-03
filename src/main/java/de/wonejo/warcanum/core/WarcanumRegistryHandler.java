@@ -11,6 +11,7 @@ public class WarcanumRegistryHandler {
 
     public void setupRegistries () {
         ModAdvancementsTrigger.registerAdvancementTriggers(this.bus);
+        ModAttachments.registerAttachments(this.bus);
         ModEntities.registerEntities(this.bus);
         ModBlocks.registerBlocks(this.bus);
         ModItems.registerItems(this.bus);

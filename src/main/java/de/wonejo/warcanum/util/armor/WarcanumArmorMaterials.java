@@ -2,15 +2,11 @@ package de.wonejo.warcanum.util.armor;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.Util;
-import net.minecraft.client.renderer.entity.SlimeRenderer;
-import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 
@@ -18,15 +14,9 @@ import java.util.EnumMap;
 import java.util.function.Supplier;
 
 public enum WarcanumArmorMaterials implements StringRepresentable, ArmorMaterial {
-    // TODO: Change the Sound event to ModSounds$ARMOR_EQUIP_GHOSTLY_PLASMA
-    GHOSTLY_PLASMA("warcanum:ghostly", 512, Util.make(new EnumMap<>(ArmorItem.Type.class), typeIntegerEnumMap -> {
-        typeIntegerEnumMap.put(ArmorItem.Type.BOOTS, 1);
-        typeIntegerEnumMap.put(ArmorItem.Type.LEGGINGS, 2);
-        typeIntegerEnumMap.put(ArmorItem.Type.CHESTPLATE, 3);
-        typeIntegerEnumMap.put(ArmorItem.Type.HELMET, 1);
-    }), 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.EMPTY)
     ;
 
+    @SuppressWarnings("unused")
     public static final Codec<WarcanumArmorMaterials> CODEC = StringRepresentable.fromEnum(WarcanumArmorMaterials::values);
     private static final EnumMap<ArmorItem.Type, Integer> HEALTH_FUNCTION_FOR_TYPE = Util.make(new EnumMap<>(ArmorItem.Type.class), p_266653_ -> {
         p_266653_.put(ArmorItem.Type.BOOTS, 13);
@@ -42,8 +32,10 @@ public enum WarcanumArmorMaterials implements StringRepresentable, ArmorMaterial
     private final SoundEvent sound;
     private final float toughness;
     private final float knockbackResistance;
+    @SuppressWarnings("deprecation")
     private final LazyLoadedValue<Ingredient> repairIngredient;
 
+    @SuppressWarnings("deprecation")
     WarcanumArmorMaterials(String pName, int pDurabilityMultiplier, EnumMap<ArmorItem.Type, Integer> pProtectionFunctionForType, int pEnchantmentValue, SoundEvent pSound, float pToughness, float pKnockbackResistance, Supplier<Ingredient> pRepairIngredient) {
         this.name = pName;
         this.durabilityMultiplier = pDurabilityMultiplier;
@@ -55,11 +47,11 @@ public enum WarcanumArmorMaterials implements StringRepresentable, ArmorMaterial
         this.repairIngredient = new LazyLoadedValue<>(pRepairIngredient);
     }
 
-    public int getDurabilityForType(ArmorItem.Type pType) {
+    public int getDurabilityForType(@NotNull ArmorItem.Type pType) {
         return HEALTH_FUNCTION_FOR_TYPE.get(pType) * this.durabilityMultiplier;
     }
 
-    public int getDefenseForType(ArmorItem.Type pType) {
+    public int getDefenseForType(@NotNull ArmorItem.Type pType) {
         return this.protectionFunctionForType.get(pType);
     }
 
@@ -67,14 +59,17 @@ public enum WarcanumArmorMaterials implements StringRepresentable, ArmorMaterial
         return this.enchantmentValue;
     }
 
+    @NotNull
     public SoundEvent getEquipSound() {
         return this.sound;
     }
 
+    @NotNull
     public Ingredient getRepairIngredient() {
         return this.repairIngredient.get();
     }
 
+    @NotNull
     public String getName() {
         return this.name;
     }

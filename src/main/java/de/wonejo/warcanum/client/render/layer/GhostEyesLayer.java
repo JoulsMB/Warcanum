@@ -23,10 +23,7 @@ public class GhostEyesLayer extends RenderLayer<GhostEntity, GhostModel> {
     }
 
     public void render(@NotNull PoseStack pPoseStack, @NotNull MultiBufferSource pBuffer, int pPackedLight, @NotNull GhostEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-        RenderType renderType = RenderType.eyes(
-                (pLivingEntity.isCharging() || pLivingEntity.getTarget() != null) ? EYE_TEXTURES[1]
-                        : EYE_TEXTURES[0]
-        );
+        RenderType renderType = RenderType.eyes((pLivingEntity.isCharging() || pLivingEntity.getTarget() != null) ? EYE_TEXTURES[1] : EYE_TEXTURES[0]);
 
         VertexConsumer consumer = pBuffer.getBuffer(renderType);
         this.getParentModel().renderToBuffer(pPoseStack, consumer, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);

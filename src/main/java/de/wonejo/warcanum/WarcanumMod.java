@@ -17,7 +17,6 @@ public class WarcanumMod {
 
     public static WarcanumClientMod CLIENT;
 
-
     public WarcanumMod (IEventBus pBus) {
 
         pBus.addListener(this::onCommonSetup);
